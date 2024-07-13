@@ -1,0 +1,106 @@
+<div class="container mt-5 mb-5">
+  <main class="form-signin w-25 m-auto">
+    <form [formGroup]="registerForm">
+      <div class="text-center">
+        <img class="mb-4" src="assets/images/LOGO-PSC.webp" alt="" width="172" height="172">
+      </div>
+      <h1 class="h3 mb-3 fw-normal text-center">สมัครสมาชิก</h1>
+
+      <div class="form-floating">
+        <input
+        formControlName ="fullname"
+        name="fullname"
+        type="text"
+        class="form-control"
+        id="floatingInput" >
+        <label for="floatingInput">Fullname</label>
+        @if(submitted && registerForm.controls['fullname'].errors)
+        {
+          @if(registerForm.controls['fullname'].errors['required']){
+            <div class="text-danger my-2">
+                กรุณาป้อนชื่อ-นามสกุล
+            </div>
+          }
+        }
+      </div>
+      <div class="form-floating mt-2">
+        <input
+        formControlName ="email"
+        name="email"
+        type="email"
+        class="form-control"
+        id="floatingInput">
+        <label for="floatingInput">Email address</label>
+        <label for="floatingInput">Email</label>
+        @if(submitted && registerForm.controls['email'].errors)
+        {
+          @if(registerForm.controls['email'].errors['required']){
+            <div class="text-danger my-2">
+                กรุณาป้อน Email
+            </div>
+          }
+          @if(registerForm.controls['email'].errors['email']){
+            <div class="text-danger my-2">
+                รูปแบบ Email ไม่ถูกต้อง
+            </div>
+          }
+        }
+      </div>
+      <div class="form-floating mt-2">
+        <input
+        formControlName ="mobile"
+        name="mobile"
+        type="tel"
+        class="form-control"
+        id="floatingInput">
+        <label for="floatingInput">Mobile</label>
+        @if(submitted && registerForm.controls['mobile'].errors)
+        {
+          @if(registerForm.controls['mobile'].errors['required']){
+            <div class="text-danger my-2">
+                กรุณาป้อนเบอร์โทรศัพท์มือถือ
+            </div>
+          }
+          @if(registerForm.controls['mobile'].errors['minlength']){
+            <div class="text-danger my-2">
+                เบอร์โทรศัพท์มือถือต้องมี 10 หลัก
+            </div>
+          }
+        }
+      </div>
+      <div class="form-floating mt-2">
+        <input
+        formControlName ="password"
+        name="password"
+        type="password"
+        class="form-control"
+        id="floatingPassword">
+        <label for="floatingPassword">Password</label>
+        @if(submitted && registerForm.controls['password'].errors)
+        {
+          @if(registerForm.controls['password'].errors['required']){
+            <div class="text-danger my-2">
+                กรุณาป้อน password
+            </div>
+          }
+          @if(registerForm.controls['password'].errors['minlength']){
+            <div class="text-danger my-2">
+                รหัสผ่านต้องไม่น้อยกว่า 6 ตัวอักษร
+            </div>
+          }
+        }
+      </div>
+
+      <div class="mt-5">
+        <button class="w-100 btn btn-lg btn-primary" type="submit" (click)="submitRegister()">สมัครสมาชิก</button>
+      </div>
+      <div class="mt-3">
+        <button class="w-100 btn btn-lg btn-warning" type="submit" (click)="resetForm()">Reset</button>
+      </div>
+      <!-- {{ userRegister.fullname }}
+      {{ userRegister.email }}
+      {{ userRegister.mobile}}
+      {{ userRegister.password }} -->
+    </form>
+  </main>
+</div>
